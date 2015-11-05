@@ -1,0 +1,32 @@
+bomberman.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+frame_0
+  rotate: false
+  xy: 2, 2
+  size: 68, 80
+  orig: 80, 80
+  offset: 10, 0
+  index: -1
+frame_1
+  rotate: false
+  xy: 72, 2
+  size: 68, 80
+  orig: 80, 80
+  offset: 6, 0
+  index: -1
+frame_2
+  rotate: false
+  xy: 142, 2
+  size: 68, 80
+  orig: 80, 80
+  offset: 2, 0
+  index: -1
+frame_3
+  rotate: false
+  xy: 72, 2
+  size: 68, 80
+  orig: 80, 80
+  offset: 6, 0
+  index: -1
