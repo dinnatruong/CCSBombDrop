@@ -29,14 +29,13 @@ public class CCSBombDrop extends ApplicationAdapter {
 	private Drawable drwTouchpad;
 	private float fSpeed;
 	TextureAtlas taBomberman, taBombDrop;
-	Texture txFG, txBomb;
-	Sprite sprFG, spBomberman;
+	Texture txBomb;
+	Sprite spFG, spBG, spBomberman;
 	ImageButton.ImageButtonStyle ibsBombDrop;
 	ImageButton ibBombDrop;
-	int nHeight, nWidth;
 	ArrayList<Bomb> arlBombs;
 
-
+	//Touchpad: https://github.com/JStruk/Bomberman/blob/master/core/src/com/mygdx/game/Thumbstick.java
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
@@ -46,11 +45,10 @@ public class CCSBombDrop extends ApplicationAdapter {
 		//Create a skin for the touchpad
 		skTouchPad = new Skin();
 		//Set background and knob imgs
-		txFG = new Texture("ThumbstickFG.png");
-		sprFG = new Sprite(txFG);
-		sprFG.setBounds(15, 15, 100, 100);
-		skTouchPad.add("drwTouchbg", new Texture("ThumbstickBG.png"));
-		skTouchPad.add("drwTouchpad", sprFG);
+		spFG = new Sprite(new Texture("ThumbstickFGsmall.png"));
+		spBG = new Sprite(new Texture("ThumbstickBG.png"));
+		skTouchPad.add("drwTouchbg", spBG);
+		skTouchPad.add("drwTouchpad", spFG);
 		touchpadStyle = new Touchpad.TouchpadStyle();
 		//make drawables based off the skin
 		drwTouchbg = skTouchPad.getDrawable("drwTouchbg");
@@ -58,13 +56,10 @@ public class CCSBombDrop extends ApplicationAdapter {
 		//Apply the bg and knob drawables to the touchpad
 		touchpadStyle.background = drwTouchbg;
 		touchpadStyle.knob = drwTouchpad;
-		touchpadStyle.knob.setTopHeight(10);
-		touchpadStyle.knob.setBottomHeight(10);
-		touchpadStyle.knob.setLeftWidth(10);
-		touchpadStyle.knob.setRightWidth(10);
+
 		touchpad = new Touchpad(10, touchpadStyle);
 		//Initiate the touchpad based on the style we just created
-		touchpad.setBounds(15, 15, 200, 200);
+		touchpad.setBounds(30, 30, 100, 100);
 		//set where the touchpad will be on the screen
 		stage = new Stage();
 		//create the stage and add the touchpad to it
@@ -78,9 +73,6 @@ public class CCSBombDrop extends ApplicationAdapter {
 		spBomberman.setPosition(Gdx.graphics.getWidth() / 2 - spBomberman.getWidth() / 2, Gdx.graphics.getHeight() / 2 + spBomberman.getHeight() / 2);
 		fSpeed = 5;
 		//set the default speed to multiply by when the touchpad is moved around to move the rect
-
-		nHeight = Gdx.graphics.getHeight();
-		nWidth = Gdx.graphics.getWidth();
 
 		//Load bomb image and create an array list of bombs
 		txBomb = new Texture(Gdx.files.internal("Bomb.png"));
@@ -96,8 +88,8 @@ public class CCSBombDrop extends ApplicationAdapter {
 		ibsBombDrop.down = skBombDrop.getDrawable("bombbtnOFF");
 		ibsBombDrop.checked = skBombDrop.getDrawable("bombbtnON");
 		ibBombDrop = new ImageButton(ibsBombDrop);
-		ibBombDrop.setSize(150, 150);
-		ibBombDrop.setPosition(nWidth / 4 + ibBombDrop.getWidth() * 2, 30);
+		ibBombDrop.setSize(120, 120);
+		ibBombDrop.setPosition(Gdx.graphics.getWidth() - (ibBombDrop.getWidth()+30), 30);
 		ibBombDrop.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
@@ -127,10 +119,10 @@ public class CCSBombDrop extends ApplicationAdapter {
 		spBomberman.setX(spBomberman.getX() + touchpad.getKnobPercentX() * fSpeed);
 		spBomberman.setY(spBomberman.getY() + touchpad.getKnobPercentY() * fSpeed);
 
-		//Render the bombs
-		for (Bomb arlBomb : arlBombs) {
-			arlBomb.render();
-			}
+		//Render each bomb in the array
+		for (int i = 0; i < arlBombs.size(); i++) {
+			arlBombs.get(i).render();
+		}
 
 		batch.begin();
 		spBomberman.draw(batch);
