@@ -28,7 +28,7 @@ public class CCSBombDrop extends ApplicationAdapter {
 	private Drawable drwTouchbg;
 	private Drawable drwTouchpad;
 	private float fSpeed;
-	TextureAtlas taBomberman, taBombDrop;
+	TextureAtlas taBomberman, taBombDrop, taBombExplode;
 	Texture txBomb;
 	Sprite spFG, spBG, spBomberman;
 	ImageButton.ImageButtonStyle ibsBombDrop;
@@ -75,7 +75,8 @@ public class CCSBombDrop extends ApplicationAdapter {
 		//set the default speed to multiply by when the touchpad is moved around to move the rect
 
 		//Load bomb image and create an array list of bombs
-		txBomb = new Texture(Gdx.files.internal("Bomb.png"));
+		taBombExplode = new TextureAtlas(Gdx.files.internal("BombExploding/BombExploding.atlas"));
+//		txBomb = new Texture(Gdx.files.internal("Bomb.png"));
 		arlBombs = new ArrayList<Bomb>();
 
 		//Create an image button: https://github.com/captainkesty/imagebutton.git
@@ -102,7 +103,7 @@ public class CCSBombDrop extends ApplicationAdapter {
 
 	//Creating sprites using a button: https://github.com/MatthewBrock/TheDeepDarkTaurock/tree/FireBallScratch/core/src/taurockdeepdark
 	public void makeBomb() {
-		arlBombs.add(new Bomb(txBomb, spBomberman.getX(), spBomberman.getY(), camera));
+		arlBombs.add(new Bomb(taBombExplode, /*txBomb,*/ spBomberman.getX(), spBomberman.getY(), camera));
 	}
 
 	public ArrayList<Bomb> getBombs() {
@@ -122,6 +123,10 @@ public class CCSBombDrop extends ApplicationAdapter {
 		//Render each bomb in the array
 		for (int i = 0; i < arlBombs.size(); i++) {
 			arlBombs.get(i).render();
+			if (arlBombs.size() == 4) {
+				arlBombs.remove(i--);
+				System.out.println("Bomb removed");
+			}
 		}
 
 		batch.begin();

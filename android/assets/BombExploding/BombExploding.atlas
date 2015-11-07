@@ -1,0 +1,103 @@
+
+BombExploding.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+frame_0
+  rotate: false
+  xy: 1, 1
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 0
+frame_1
+  rotate: false
+  xy: 1, 1
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 1
+frame_2
+  rotate: false
+  xy: 1, 1
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 2
+frame_3
+  rotate: false
+  xy: 1, 1
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 3
+frame_4
+  rotate: false
+  xy: 1, 1
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 4
+frame_5
+  rotate: false
+  xy: 386, 1
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 5
+frame_6
+  rotate: false
+  xy: 463, 1
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 6
+frame_7
+  rotate: false
+  xy: 540, 1
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 7
+frame_8
+  rotate: false
+  xy: 617, 1
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 8
+frame_9
+  rotate: false
+  xy: 694, 1
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 9
+frame_10
+  rotate: false
+  xy: 78, 1
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 10
+frame_11
+  rotate: false
+  xy: 155, 1
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 11
+frame_12
+  rotate: false
+  xy: 232, 1
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 12
+frame_13
+  rotate: false
+  xy: 309, 1
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 13
