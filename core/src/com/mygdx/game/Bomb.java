@@ -1,6 +1,5 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -11,43 +10,44 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
  */
 public class Bomb {
     Sprite[] spBomb;
-//    Sprite spBomb;
     SpriteBatch spriteBatch;
-    OrthographicCamera camera;
     int j, nSpeed;
+    boolean isExploded;
 
-    Bomb(TextureAtlas taBombExplode, /*Texture txBomb,*/ float fX, float fY, OrthographicCamera camera_) {
-        camera = camera_;
+    Bomb(TextureAtlas taBombExplode, float fX, float fY) {
         spriteBatch = new SpriteBatch();
-//        spBomb = new Sprite(txBomb);
-//        spBomb.setOrigin(spBomb.getHeight()/2, spBomb.getWidth()/2);
-//        spBomb.setPosition(fX, fY);
-//        spBomb.setSize(50, 50);
-        spBomb = new Sprite[14];
+        isExploded = false;
+        spBomb = new Sprite[16];
         j = 0;
         nSpeed = 0;
-        for(int a = 0; a < 14; a++) {
-            spBomb[a] = new Sprite(taBombExplode.findRegion("frame_"+a));
+
+        //Loop through regions of the TextureAtlas and assign each to an index of the array
+        for(int a = 0; a < 16; a++) {
+            spBomb[a] = new Sprite(taBombExplode.findRegion("frame_"+ a));
             spBomb[a].setOrigin(spBomb[a].getHeight()/2, spBomb[a].getWidth()/2);
             spBomb[a].setPosition(fX, fY);
             spBomb[a].setSize(50, 50);
         }
-
     }
 
     public void render () {
         spriteBatch.begin();
-//        spBomb.draw(spriteBatch);
         spBomb[j].draw(spriteBatch);
-        //nSpeed changes the time interval at which the sprites are drawn
-        nSpeed++;
-        if (nSpeed%6 == 0) {
-            if (j == 13) { //Make sure index stays within the bounds the array
-                j = 0;
-            } else {
+        nSpeed++;   //nSpeed changes the time interval at which the sprites are drawn
+        if (nSpeed%8 == 0) {
+            isExploded = isExploded(j);
+            if (!isExploded(j)) {
                 j++;
             }
         }
         spriteBatch.end();
+    }
+
+    //Check if index is at the end of the animation
+    public boolean isExploded(int j) {
+        if (j == 15) {
+            return true;
+        }
+        return false;
     }
 }
