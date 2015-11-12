@@ -69,7 +69,7 @@ public class CCSBombDrop extends ApplicationAdapter {
 		taBomberman = new TextureAtlas(Gdx.files.internal("bomberman.txt"));
 		spBomberman = new Sprite(taBomberman.findRegion("frame_1"));
 		spBomberman.setPosition(Gdx.graphics.getWidth() / 2 - spBomberman.getWidth() / 2, Gdx.graphics.getHeight() / 2 + spBomberman.getHeight() / 2);
-		//set the default speed to multiply by when the touchpad is moved around to move the rect
+		//set the default speed to multiply by when the touchpad is moved around to move the sprite
 		fSpeed = 5;
 
 		//Create an image button to "drop a bomb" when pressed
@@ -101,12 +101,12 @@ public class CCSBombDrop extends ApplicationAdapter {
 
 	//Adding sprites using a button: https://github.com/MatthewBrock/TheDeepDarkTaurock/tree/FireBallScratch/core/src/taurockdeepdark
 	public void makeBomb() {
-		arlBombs.add(new Bomb(taBombExplode, spBomberman.getX(), spBomberman.getY()));
+		arlBombs.add(new Bomb(taBombExplode, (spBomberman.getX()+ spBomberman.getWidth()), spBomberman.getY()));
 	}
 
-	public ArrayList<Bomb> getBombs() {
+	/*public ArrayList<Bomb> getBombs() {
 		return arlBombs;
-	}
+	}*/
 
 	@Override
 	public void render () {
@@ -118,7 +118,7 @@ public class CCSBombDrop extends ApplicationAdapter {
 		spBomberman.setX(spBomberman.getX() + touchpad.getKnobPercentX() * fSpeed);
 		spBomberman.setY(spBomberman.getY() + touchpad.getKnobPercentY() * fSpeed);
 
-		//Render each bomb in the array
+		//Render each bomb in the array list
 		for (int i = 0; i < arlBombs.size(); i++) {
 			arlBombs.get(i).render();
 			if (arlBombs.get(i).isExploded) {	//Remove bomb once animation ends

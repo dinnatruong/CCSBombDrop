@@ -36,9 +36,9 @@ public class Bomb {
         nSpeed++;   //nSpeed changes the time interval at which the sprites are drawn
         if (nSpeed%8 == 0) {
             isExploded = isExploded(j);
-            if (!isExploded(j)) {
+//            if (!isExploded(j)) {
                 j++;
-            }
+//            }
         }
         spriteBatch.end();
     }
